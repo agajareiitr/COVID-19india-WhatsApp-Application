@@ -1,4 +1,5 @@
 import requests
+# latestdata() this Function collects Information on Overall Cases in India
 def latestdata():
 	url = "https://api.covid19india.org/data.json"
 	data = requests.get(url).json()
@@ -11,6 +12,8 @@ def latestdata():
 	    f"🔹 Total Deaths : *{total['deaths']}*\n"
 	    f"🔹 Last updated at : *{total['lastupdatedtime']}*")
 	return output
+		
+# latestStateData() This function collects the Individual Data of State using  State Codes
 def latestStateData(code):
 	url = "https://api.covid19india.org/data.json"
 	data = requests.get(url).json()
@@ -28,6 +31,7 @@ def latestStateData(code):
 
 	return output
 
+# top5states() this function collects the most Affected states in India
 def top5states():
 	url = "https://api.covid19india.org/data.json"
 	data = requests.get(url).json()
@@ -42,12 +46,10 @@ def top5states():
 	    f"🔹 *{statedata[5]['state']}*  : *{statedata[5]['confirmed']}* / *{statedata[5]['deaths']}*")
 	return output
 
+# districtwisedata() this function collects the most affected districts data in a Particular state
 def districtwisedata(msg):
 	url = "https://api.covid19india.org/v2/state_district_wise.json"
 	data = requests.get(url).json()
-	# distdata = data[0]['districtData']
-	# distlist = [(i['district'],i['confirmed']) for i in distdata]
-	# distlist = sorted(distlist,key= lambda t:t[1],reverse =True)
 	district_list=[i['state'] for i in data]
 	if msg.title() in district_list:
 		index_of_state = district_list.index(msg.title())
