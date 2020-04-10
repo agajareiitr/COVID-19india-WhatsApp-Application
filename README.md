@@ -36,3 +36,6 @@ COVID-19india WhatsApp Application uses following things to operate:
 * **Step 3 :** using **```ngrok```** to convert my localhost into **```'http' server```**
 * **Step 4 :** Added **```'http' server into Twilio```** for sending WhatsApp Messages
 ***
+## Contributing
+
+If you want to Contribute or Add New Features then Fork the Repository,add features and push it, once verifed your code can be added to master branch
