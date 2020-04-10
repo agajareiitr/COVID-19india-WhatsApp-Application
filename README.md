@@ -29,9 +29,7 @@
 
 ## How This Works
 COVID-19india WhatsApp Application uses following things to operate:
-* **```  Python  ```**
-* **```  Twilio  ```**
-* **```  ngrok  ```**
+* Uses **```  Python  ```** **```  Twilio  ```** **```  ngrok  ```** **```  Flask  ```**
 
 * **Step 1 :** Using Python it collected The data from the from API of **covid19india** using **```requests```** Module
 * **Step 2 :** Using **```Flask``` and ```Twilio```** Python Libraries I hosted it on localhost and arranged **'POST','GET'** Methods
