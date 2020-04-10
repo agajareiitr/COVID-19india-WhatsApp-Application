@@ -1,5 +1,5 @@
 # COVID-1india WhatsApp Application
-***
+
 #### COVID-19india-WhatsApp is a Application Which Provides Latest Information of Corona Virus Cases on Your WhatsApp Number
 ***
 ## Setup
