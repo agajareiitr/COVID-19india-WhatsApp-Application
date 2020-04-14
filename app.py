@@ -23,13 +23,14 @@ def hello():
 def sms_reply():
     msg = request.form.get('Body')
     user = request.form.get('From')
-    with open("user_names.txt","r") as f:
-        if user in f:
-            print(f"{user} sent {msg}")
+    with open('user_names.txt','r') as f:
+        data = f.read()
+        if user in data:
+            print(f"{user} sent: {msg}")
         else:
             with open('user_names.txt','a') as file:
-                file.write('\n'+user)
-                print(f"New user :- {user} added")
+                file.write(f"\n{user}")
+                print(f"New User :- {user} added and sent: {msg}")
     if msg.title() in stateslist:
         resp = MessagingResponse()
         resp.message(getCoronaData.districtwisedata(msg))
