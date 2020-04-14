@@ -41,14 +41,16 @@ def top5states():
     url = "https://api.covid19india.org/data.json"
     data = requests.get(url).json()
     statedata = data['statewise']
+    statedatalist = [[i['state'],int(i['confirmed']),i['deaths']] for i in statedata]
+    statedatalist=sorted(statedatalist,key=lambda t:t[1],reverse=True)
     output = (
         "🔹 This Information is Based on https://www.covid19india.org/ 👇\n"
-        f"🔹 *5* Most Affected States with *Confirmed / Deaths* : \n"
-        f"🔹 *{statedata[1]['state']}*  : *{statedata[1]['confirmed']}* / *{statedata[1]['deaths']}*\n"
-        f"🔹 *{statedata[2]['state']}*  : *{statedata[2]['confirmed']}* / *{statedata[2]['deaths']}*\n"
-        f"🔹 *{statedata[3]['state']}*  : *{statedata[3]['confirmed']}* / *{statedata[3]['deaths']}*\n"
-        f"🔹 *{statedata[4]['state']}*  : *{statedata[4]['confirmed']}* / *{statedata[4]['deaths']}*\n"
-        f"🔹 *{statedata[5]['state']}*  : *{statedata[5]['confirmed']}* / *{statedata[5]['deaths']}*")
+        f"🔹 *5* Most Affected States with Confirmed / Deaths : \n"
+        f"🔹 *{statedatalist[1][0]}* : *{statedatalist[1][1]}* / *{statedatalist[1][2]}*\n"
+        f"🔹 *{statedatalist[2][0]}* : *{statedatalist[2][1]}* / *{statedatalist[2][2]}*\n"
+        f"🔹 *{statedatalist[3][0]}* : *{statedatalist[3][1]}* / *{statedatalist[3][2]}*\n"
+        f"🔹 *{statedatalist[4][0]}* : *{statedatalist[4][1]}* / *{statedatalist[4][2]}*\n"
+        f"🔹 *{statedatalist[5][0]}* : *{statedatalist[5][1]}* / *{statedatalist[5][2]}*")
     return output
 
 
