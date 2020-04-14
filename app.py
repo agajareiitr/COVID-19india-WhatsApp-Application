@@ -3,7 +3,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 import getCoronaData
 
 app = Flask(__name__)
-userlist = []
 stateslist = ['Kerala', 'Delhi', 'Telangana', 'Rajasthan', 'Haryana', 'Uttar Pradesh', 'Ladakh', 'Tamil Nadu',
               'Jammu and Kashmir', 'Karnataka', 'Maharashtra', 'Punjab', 'Andhra Pradesh', 'Uttarakhand', 'Odisha',
               'Puducherry', 'West Bengal', 'Chandigarh', 'Chhattisgarh', 'Gujarat', 'Himachal Pradesh',
@@ -24,9 +23,13 @@ def hello():
 def sms_reply():
     msg = request.form.get('Body')
     user = request.form.get('From')
-    if user not in userlist:
-        userlist.append(user)
-        print("New user : ", user, " Total users :", len(userlist))
+    with open("user_names.txt","r") as f:
+        if user in f:
+            print(f"{user} sent {msg}")
+        else:
+            with open('user_names.txt','a') as file:
+                file.write('\n'+user)
+                print(f"New user :- {user} added")
     if msg.title() in stateslist:
         resp = MessagingResponse()
         resp.message(getCoronaData.districtwisedata(msg))
