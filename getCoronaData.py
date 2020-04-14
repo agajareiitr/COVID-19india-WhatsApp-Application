@@ -1,5 +1,6 @@
 import requests
-
+import time
+import datetime
 
 # latestdata() this Function collects Information on Overall Cases in India
 def latestdata():
@@ -70,4 +71,23 @@ def districtwisedata(msg):
             f"🔹 *{x[3][0]}* : *{x[3][1]}*\n"
             f"🔹 *{x[4][0]}* : *{x[4][1]}*")
     # district_in_state = latestStateData(msg.title())
+    return output
+#this function converts time of latest News Data to simple time
+def converttime(seconds):
+    if seconds<3600:
+        return f"{int(seconds/60)} minutes ago"
+    else:
+        return f"{int(seconds/3600)} hour ago"
+
+# latestnews() function gives the latest news of coronacirus cases based on website data
+def latestnews():
+    url ="https://raw.githubusercontent.com/covid19india/api/master/updatelog/log.json"
+    data = requests.get(url).json()
+    output = (
+                "🔹 This Latest News Data is Based on https://www.covid19india.org/ 👇\n"
+                f"🔹 {converttime(int(time.time())-data[-1]['timestamp'])}:{data[-1]['update']}"
+                f"🔹 {converttime(int(time.time())-data[-2]['timestamp'])}:{data[-2]['update']}"
+                f"🔹 {converttime(int(time.time())-data[-3]['timestamp'])}:{data[-3]['update']}"
+                f"🔹 {converttime(int(time.time())-data[-4]['timestamp'])}:{data[-4]['update']}"
+                f"🔹 {converttime(int(time.time())-data[-5]['timestamp'])}:{data[-5]['update']}")
     return output
