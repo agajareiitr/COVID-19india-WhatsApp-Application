@@ -83,8 +83,10 @@ def districtwisedata(msg):
 def converttime(seconds):
     if seconds<3600:
         return f"{int(seconds/60)} minutes ago"
-    else:
+    elif seconds<86400:
         return f"{int(seconds/3600)} hour ago"
+    else:
+        return f"{int(seconds/86400)} days ago"
 
 # latestnews() function gives the latest news of coronacirus cases based on website data
 def latestnews():
