@@ -27,13 +27,16 @@ def latestStateData(code):
     statecodes = [f"{statedata[i]['statecode']}" for i in range(len(statedata))]
     indexofstate = statecodes.index(code)
     statewisedata = statedata[indexofstate]
+    date = datetime.datetime.strptime(statewisedata['lastupdatedtime'], "%d/%m/%Y %H:%M:%S")
+    time_tuple = date.timetuple()
+    timestamp = time.mktime(time_tuple)
     output = (
         "🔹 This Information is Based on https://www.covid19india.org/ 👇\n"
         f"🔹 State : *{statewisedata['state']}*\n"
         f"🔹 Total confirmed cases : *{statewisedata['confirmed']}*\n"
         f"🔹 Total active cases : *{statewisedata['active']}*\n"
         f"🔹 Total Deaths : *{statewisedata['deaths']}*\n"
-        f"🔹 Last updated at : *{statewisedata['lastupdatedtime']}*")
+        f"🔹 Last updated at : *{converttime(int(time.time())-timestamp)}*")
 
     return output
 
