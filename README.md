@@ -20,6 +20,7 @@
 * ``` 3``` for **5 most Affected States in India**
 * ``` 4``` for **Latest News on Corona virus cases**
 * ``` 5``` for **How I Made this bot**
+* ``` 6``` for **Share this Bot with a Link**
 * or Enter the Name of State like ```Maharashtra``` to get most affected districts in **Maharastra**
 ***
 ## Source of CORONA-19 cases data
