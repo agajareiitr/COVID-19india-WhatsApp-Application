@@ -7,13 +7,15 @@ def latestdata():
     url = "https://api.covid19india.org/data.json"
     data = requests.get(url).json()
     total = data['statewise'][0]
-    # increased = data['key_values'][0]
+    date = datetime.datetime.strptime(total['lastupdatedtime'], "%d/%m/%Y %H:%M:%S")
+    time_tuple = date.timetuple()
+    timestamp = time.mktime(time_tuple)
     output = (
         "🔹 This Information is Based on https://www.covid19india.org/ 👇\n"
         f"🔹 Total confirmed cases : *{total['confirmed']}*\n"
         f"🔹 Total active cases : *{total['active']}*\n"
         f"🔹 Total Deaths : *{total['deaths']}*\n"
-        f"🔹 Last updated at : *{total['lastupdatedtime']}*")
+        f"🔹 Last updated : *{converttime(int(time.time())-timestamp)}*")
     return output
 
 
@@ -77,7 +79,7 @@ def districtwisedata(msg):
 #this function converts time of latest News Data to simple time
 def converttime(seconds):
     if seconds<3600:
-        return f"{int(seconds/60)} min ago"
+        return f"{int(seconds/60)} minutes ago"
     else:
         return f"{int(seconds/3600)} hour ago"
 
